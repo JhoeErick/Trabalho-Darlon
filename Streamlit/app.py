@@ -32,9 +32,7 @@ opcao = st.sidebar.radio(
     )
 )
 
-# =======================================================
-# 1️⃣ TAXA DE VITÓRIA VS MAESTRIA (DINÂMICO)
-# =======================================================
+# 1️⃣ TAXA DE VITÓRIA VS MAESTRIA (DINÂMI
 if opcao == "1️⃣ Taxa de Vitória vs Nível de Maestria":
     st.header("1️⃣ Taxa de Vitória por Faixa de Nível de Maestria")
 
@@ -49,7 +47,7 @@ if opcao == "1️⃣ Taxa de Vitória vs Nível de Maestria":
     win_rate_by_mastery = df.groupby('mastery_bin')['win_numeric'].mean().reset_index()
     win_rate_by_mastery['Taxa de Vitória (%)'] = win_rate_by_mastery['win_numeric'] * 100
 
-    # Seletor dinâmico
+
     selected_bin = st.sidebar.selectbox("🎯 Selecione a faixa de maestria:", labels_mastery)
     filtered_data = df[df['mastery_bin'] == selected_bin]
     win_rate = filtered_data['win_numeric'].mean() * 100 if not filtered_data.empty else 0
@@ -65,9 +63,7 @@ if opcao == "1️⃣ Taxa de Vitória vs Nível de Maestria":
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     st.pyplot(fig)
 
-# =======================================================
 # 2️⃣ ELO VS DURAÇÃO DA PARTIDA (DINÂMICO)
-# =======================================================
 elif opcao == "2️⃣ Elo vs Duração da Partida":
     st.header("2️⃣ Duração Média das Partidas por Tier")
 
@@ -80,7 +76,6 @@ elif opcao == "2️⃣ Elo vs Duração da Partida":
 
     tier_avg = df.groupby("solo_tier")["duration_minutes"].mean().reset_index()
 
-    # Seletor dinâmico
     selected_tier = st.sidebar.selectbox("🏅 Selecione o Tier:", tier_order)
     tier_filtered = df[df["solo_tier"] == selected_tier]
     avg_duration = tier_filtered["duration_minutes"].mean() if not tier_filtered.empty else 0
