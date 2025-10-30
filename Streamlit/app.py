@@ -40,8 +40,14 @@ analise = st.sidebar.selectbox(
     ]
 )
 
+<<<<<<< HEAD
 st.sidebar.markdown("---")
 st.sidebar.caption("")
+=======
+# 1️⃣ TAXA DE VITÓRIA VS MAESTRIA (DINÂMI
+if opcao == "1️⃣ Taxa de Vitória vs Nível de Maestria":
+    st.header("1️⃣ Taxa de Vitória por Faixa de Nível de Maestria")
+>>>>>>> 22bcbddf95420370513a074efacfdcefc6fe3d9a
 
 #  ANÁLISE 1 
 if analise == "Taxa de Vitória vs Nível de Maestria":
@@ -58,7 +64,14 @@ if analise == "Taxa de Vitória vs Nível de Maestria":
         value=(min_mastery, max_mastery)
     )
 
+<<<<<<< HEAD
     filtered = df[(df['mastery_level'] >= faixa[0]) & (df['mastery_level'] <= faixa[1])]
+=======
+
+    selected_bin = st.sidebar.selectbox("🎯 Selecione a faixa de maestria:", labels_mastery)
+    filtered_data = df[df['mastery_bin'] == selected_bin]
+    win_rate = filtered_data['win_numeric'].mean() * 100 if not filtered_data.empty else 0
+>>>>>>> 22bcbddf95420370513a074efacfdcefc6fe3d9a
 
     win_rate = filtered.groupby('mastery_level')['win_numeric'].mean().reset_index()
     win_rate['Taxa de Vitória (%)'] = win_rate['win_numeric'] * 100
@@ -72,9 +85,15 @@ if analise == "Taxa de Vitória vs Nível de Maestria":
     )
     st.plotly_chart(fig, use_container_width=True)
 
+<<<<<<< HEAD
 # ANÁLISE 2 
 elif analise == "Elo vs Duração da Partida":
     st.header("⏱️ Duração Média das Partidas por Tier")
+=======
+# 2️⃣ ELO VS DURAÇÃO DA PARTIDA (DINÂMICO)
+elif opcao == "2️⃣ Elo vs Duração da Partida":
+    st.header("2️⃣ Duração Média das Partidas por Tier")
+>>>>>>> 22bcbddf95420370513a074efacfdcefc6fe3d9a
 
     selected_tiers = st.multiselect("Selecione os Tiers:", tier_order, default=tier_order)
     filtered = df[df['solo_tier'].isin(selected_tiers)]
@@ -94,9 +113,15 @@ elif analise == "Elo vs Duração da Partida":
     fig.update_layout(yaxis_title="Duração Média (min)", xaxis_title="Tier")
     st.plotly_chart(fig, use_container_width=True)
 
+<<<<<<< HEAD
 #  ANÁLISE 3 
 elif analise == "Taxa de Vitória por Elo e Maestria":
     st.header("⚔️ Taxa de Vitória por Tier e Faixa de Maestria")
+=======
+    selected_tier = st.sidebar.selectbox("🏅 Selecione o Tier:", tier_order)
+    tier_filtered = df[df["solo_tier"] == selected_tier]
+    avg_duration = tier_filtered["duration_minutes"].mean() if not tier_filtered.empty else 0
+>>>>>>> 22bcbddf95420370513a074efacfdcefc6fe3d9a
 
     # Sliders dinâmicos para maestria
     min_mastery = int(df['mastery_level'].min())
