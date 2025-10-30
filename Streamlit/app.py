@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ---------------- CONFIGURAÇÃO INICIAL ----------------
+
 st.set_page_config(page_title="League of Legends - Dashboard Dinâmico", layout="wide")
 st.title("🎮 Painel Analítico - League of Legends (Season 15)")
 
-# ---------------- CARREGAR DADOS ----------------
+
 csv_path = "League of Legends Ranked Match Data  Season 15 (EUN).csv"
 
 @st.cache_data
@@ -28,7 +28,6 @@ tier_order = ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'EMERALD',
               'DIAMOND', 'MASTER', 'GRANDMASTER', 'CHALLENGER']
 df['solo_tier'] = pd.Categorical(df['solo_tier'], categories=tier_order, ordered=True)
 
-# ---------------- BARRA LATERAL ----------------
 st.sidebar.header("📊 Escolha a análise")
 
 analise = st.sidebar.selectbox(
@@ -43,7 +42,7 @@ analise = st.sidebar.selectbox(
 st.sidebar.markdown("---")
 st.sidebar.caption("Os gráficos são dinâmicos — altere os filtros e veja o resultado instantaneamente.")
 
-# ---------------- ANÁLISE 1 ----------------
+# ANÁLISE 1
 if analise == "Taxa de Vitória vs Nível de Maestria":
     st.header("🏆 Taxa de Vitória por Nível de Maestria")
 
@@ -72,7 +71,7 @@ if analise == "Taxa de Vitória vs Nível de Maestria":
     )
     st.plotly_chart(fig, use_container_width=True)
 
-# ---------------- ANÁLISE 2 ----------------
+#  ANÁLISE 2
 elif analise == "Elo vs Duração da Partida":
     st.header("⏱️ Duração Média das Partidas por Tier")
 
@@ -94,7 +93,7 @@ elif analise == "Elo vs Duração da Partida":
     fig.update_layout(yaxis_title="Duração Média (min)", xaxis_title="Tier")
     st.plotly_chart(fig, use_container_width=True)
 
-# ---------------- ANÁLISE 3 ----------------
+#  ANÁLISE 3
 elif analise == "Taxa de Vitória por Elo e Maestria":
     st.header("⚔️ Taxa de Vitória por Tier e Faixa de Maestria")
 
